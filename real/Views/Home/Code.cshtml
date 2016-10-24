@@ -1,0 +1,114 @@
+﻿@using real.Models
+@model sms_db
+
+<div class="grey lighten-2 valign-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m6 l4 hide-on-small-only">
+                <div class="card center z-depth-2">
+                    <div class="card-header green">
+                        <h2 class="card-title white-text">Сүүлд шалгалт өгсөн хэрэглэгч</h2>
+                    </div>
+                    <div class="card-inner">
+                        <hr />
+                        <div id="messagesTable"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m6 l4">
+                <div class="card center z-depth-2">
+                    <div class="card-header red">
+                        <h2 class="card-title white-text"><span style="font-weight:bold">158-158</span> Дугаарт <span style="font-weight:bold">1</span> гэсэн мессеж 150 нэгжээр илгээгээд ирсэн кодыг илгээсэн утасны дугаарын хамт доорхи нүдэнд оруулна уу. (Одоогоор зөвхөн Mobicom-н дугаараас боломжтой)</h2>
+                    </div>
+                    <div class="card-inner">
+                        <hr />
+                        <div class="card-main">
+                            @using (Html.BeginForm("code", "home", FormMethod.Post))
+                            {
+                                @Html.TextBoxFor(x => x.mobile, new { @class = "form-control", placeholder = "Утасны дугаар" })
+                                @Html.TextBoxFor(x => x.activation, new { @class = "form-control", placeholder = "КОД" })
+                                
+                                <input type="submit" value="ШАЛГАЛТ" class="btn-large waves-effect waves-light red" />
+                                <a href="~/home" class="btn-large waves-effect waves-light blue"><i class="material-icons">home</i></a>
+                            }
+                            <h5>@ViewBag.Message</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col s12 m6 l4 hide-on-small-only">
+                <div class="card center z-depth-2">
+                    <div class="card-inner">
+                        <div id="fb-root"></div>
+                        <script>
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=1423578614577121";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+                        <div class="fb-page" data-href="https://www.facebook.com/onoomn" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/onoomn" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/onoomn">Төрийн албан хаагчийн шалгалтын тест</a></blockquote></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clean"></div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/jquery.signalR-2.1.1.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.tooltipped').tooltip({ delay: 50 });
+        });
+
+        $(function () {
+
+            preloader = new $.materialPreloader({
+                position: 'top',
+                height: '5px',
+                col_1: '#159756',
+                col_2: '#da4733',
+                col_3: '#3b78e7',
+                col_4: '#fdba2c',
+                fadeIn: 200,
+                fadeOut: 200
+            });
+
+            var notifications = $.connection.messagesHub;
+
+            notifications.client.updateMessages = function () {
+                getAllMessages();
+                preloader.on();
+                Materialize.showStaggeredList('#staggered-test');
+            };
+            $.connection.hub.start().done(function () {
+                getAllMessages();
+                preloader.on();
+            }).fail(function (e) {
+                alert(e);
+            });
+        });
+
+
+        function getAllMessages() {
+            var tbl = $('#messagesTable');
+            $.ajax({
+                url: 'http://localhost/real/home/GetMessages',
+                contentType: 'application/html ; charset:utf-8',
+                type: 'GET',
+                dataType: 'html'
+            }).success(function (result) {
+                tbl.empty().append(result);
+                preloader.off();
+            }).error(function () {
+
+            });
+        }
+    </script>
+}

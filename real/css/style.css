@@ -1,0 +1,246 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+nav ul a,
+nav .brand-logo {
+  color: #444;
+}
+
+p {
+  line-height: 2rem;
+}
+
+.button-collapse {
+  color: #b71c1c ;
+}
+
+.parallax-container {
+  min-height: 380px;
+  line-height: 0;
+  height: auto;
+  color: rgba(255,255,255,.9);
+}
+  .parallax-container .section {
+    width: 100%;
+  }
+
+@media only screen and (max-width : 992px) {
+  .parallax-container .section {
+    position: absolute;
+    top: 40%;
+  }
+  #index-banner .section {
+    top: 10%;
+  }
+}
+
+@media only screen and (max-width : 600px) {
+  #index-banner .section {
+    top: 0;
+  }
+}
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+  font-size: inherit;
+}
+
+footer.page-footer {
+  margin: 0;
+}
+
+.fullscreen {
+    width: 100%;
+    position: relative;
+    top: 50%;
+    -ms-transform: translate(0,-50%); /* IE 9 */
+   	-webkit-transform: translate(0,-50%); /* Safari */
+    transform: translate(0,-50%); 
+}
+
+#codebg {
+      position:relative;
+      height:100vh;
+}
+
+
+.card * {
+  box-sizing: border-box;
+}
+.card.active {
+  z-index: 2;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23) !important;
+}
+.card hr {
+  padding: 0;
+  margin: 0;
+}
+.card .card-header,
+.card .card-main,
+.card .card-footer {
+  padding: 1.15em 1.5em;
+}
+.card .card-header .card-title {
+  margin: 0;
+  font-size: 20px;
+  line-height: 20px;
+  display: inline-block;
+}
+.card-inner>.btn {
+    white-space:normal !important;
+    line-height:normal !important;
+    height:auto !important;
+    /*padding:0 !important;*/
+    padding:1em;
+}
+.card-inner>.btn:hover {
+    background-color:#cfd8dc    ;
+}
+.btn.disabled.quiz_true, .qi_true {
+    background-color: #00BFA5 !important;
+    color: #fff !important;
+}
+
+.btn.disabled.quiz_wrong, .qi_wrong {
+    background-color: #EC407A !important;
+    color: #fff !important;
+}
+/*=================================IKON=================================*/
+.quiz_indicator_wrapper {
+    margin: 0px 2px 2px 0px;
+    position: relative;
+    height: 40px;
+    z-index:9999999;
+}
+.quiz_indicator {
+    background-color: #f7f7f7;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    overflow: hidden;
+    height: 40px;
+    position: absolute;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 9999999999;
+    -webkit-transform: translateZ(0);
+}
+
+.quiz_indicator_scroll {
+    overflow: hidden;
+    height: 40px;
+    position: absolute;
+    top: 0;
+    left: 48px;
+    right: 1px;
+    bottom: 0;
+}
+
+.qq_ind_number {
+    float: left;
+    width: 30px;
+    height: 24px;
+    margin: 8px 5px;
+    line-height: 24px;
+    text-align: center;
+    background-color: #dfdfdf;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.qi_p {
+    position: absolute;
+    top: 0;
+    height: 40px;
+    width: 24px;
+    left: 0px;
+    line-height: 36px;
+    text-align: center;
+    color: #aaa;
+    font-size: 24px;
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.qi_n {
+    position: absolute;
+    top: 0;
+    height: 40px;
+    width: 24px;
+    left: 24px;
+    line-height: 36px;
+    text-align: center;
+    color: #aaa;
+    font-size: 24px;
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.indicator_fixed {
+    position: fixed;
+    top: 0px;
+}
+.point_fixed {
+    position: fixed;
+    bottom: 0;
+    left:0;
+    z-index:999999;
+    background:#009688 ;
+    border-radius:0 5px 0 0;
+}
+.point_fixed .btn{
+    padding:5px;
+    margin:5px 5px 5px 0;
+    height:25px;line-height:16px;
+}
+
+@media only screen and (max-width: 601px){
+    nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
+        height: 30px;
+        line-height: 30px;
+    }
+    .quiz_indicator_wrapper {
+        left:0;
+        margin-left:0;
+    }
+}
+
+.card-profile-img {
+    background-color:#FFF;
+    padding:5px 12px;
+    color:#000;
+    border-radius: 50%;
+    margin-top: -15px;
+    position: absolute;
+    z-index: 99999;
+    margin-left:49%;
+}
+
+.pull-left {
+    float: left !important;
+}

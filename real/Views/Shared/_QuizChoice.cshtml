@@ -1,0 +1,39 @@
+﻿@model IEnumerable<real.Models.QuizHariult>
+@{
+    string[] useg = new string[4];
+        useg[0] = "A";
+        useg[1] = "B";
+        useg[2] = "C";
+        useg[3] = "D";
+}
+@{int j = 0;}
+@foreach (var item in Model)
+{
+    <div onclick='checkTrue(@item.Id,@item.Is_true,@item.Test_id)' id='c_@item.Id' data-zuv='@item.Is_true' class='col s12 m6 l3 btn btn-flat waves-effect waves-light'>
+    @useg[j]). @item.Title</div>
+
+    j++;
+}
+<script type="text/javascript">
+    function checkTrue(cid, yon, qid) {
+        if (yon == 1) {
+            $("#c_" + cid).last().removeClass(" btn-flat");
+            $("#c_" + cid).last().addClass("disabled quiz_true");
+            $("#qi_" + qid).addClass("qi_true");
+
+
+            $('#qi_ind_current').html(parseInt($('#qi_ind_current').text()) + 1);
+        }
+        else {
+            $("#c_" + cid).last().removeClass(" btn-flat");
+            $("#c_" + cid).last().addClass("disabled quiz_wrong");
+            $("#" + qid + " .btn").filter(function () {
+                return $(this).attr('data-zuv') === '1';
+            }).addClass("disabled quiz_true");
+
+            $("#qi_" + qid).addClass("qi_wrong");
+        }
+
+        $("#" + qid + " .btn").removeAttr("onclick");
+    }
+</script>

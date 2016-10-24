@@ -1,0 +1,71 @@
+﻿@model IEnumerable<real.Models.QuizAsuult>
+
+<div class="quiz_indicator_wrapper center ">
+    <div id="quiz_indicator" class="quiz_indicator z-depth-1" style="top: 0px; position: absolute; ">
+
+        <div class="quiz_indicator_scroll">
+            <div id="quiz_indicator_numbers">
+                @{int i = 1;}
+                @foreach (var item in Model)
+                {
+                    <div id="qi_@item.Id" class="qq_ind_number" onclick="animateQuestion(@item.Id)">@i</div>
+
+                    i++;
+                }
+            </div>
+        </div>
+        <div class="qi_p" id="qi_p">‹ </div>
+        <div class="qi_n" id="qi_n">› </div>
+    </div>
+</div>
+
+
+@{int j = 1;}
+@foreach (var item in Model)
+{
+    <div id='@item.Id' class='card'><div class='card-header blue'><h5 class='card-title white-text'>@item.Title</h5></div><div class='card-profile-img pull-left z-depth-1'>@j</div><div class='card-inner row'><hr />
+        @*@Html.Partial("_QuizChoice", new { qid = @item.Id });*@
+        @*@Html.Partial("_QuizChoice")*@
+        @{ Html.RenderAction("_QuizChoice", new { qid = @item.Id }); }
+    </div></div>
+    j++;
+}
+
+<script type="text/javascript">
+    function animateQuestion(qid)
+    {
+        $('html, body').animate({ scrollTop: $('#'+qid).offset().top - 150 }, 500);
+    }
+
+    var w = $(window).width();
+    $('#quiz_indicator').css('width', w-20);
+    $('#quiz_indicator_numbers').css('width', 2400);
+
+    
+    $(document).ready(function () {
+        var m = $("#quiz_indicator_scroll"), g = $("#quiz_indicator_numbers");
+        if (m.width() < g.width()) {
+            var v = g.width() - m.width();
+            $("#qi_p").click(function () {
+                var e = parseInt($("#quiz_indicator_numbers").css("margin-left").slice(0, -2)); 0 > e + 40 ? e += 40 : e = 0,
+                $("#quiz_indicator_numbers").css("margin-left", e + "px")
+            }),
+            $("#qi_n").click(function () {
+                var e = parseInt($("#quiz_indicator_numbers")
+                    .css("margin-left").slice(0, -2)); v + e - 40 > 0 ? e -= 40 : e = -1 * v, $("#quiz_indicator_numbers").css("margin-left", e + "px")
+            })
+        }
+
+        $(window).scroll(function () {
+            console.log($(window).scrollTop())
+            if ($(window).scrollTop() > 60) {
+                $('.quiz_indicator_wrapper').addClass('indicator_fixed');
+                $('#quiz_indicator').css('width', w);
+            }
+            if ($(window).scrollTop() < 60) {
+                $('.quiz_indicator_wrapper').removeClass('indicator_fixed');
+                $('#quiz_indicator').css('width', w - 20);
+            }
+        });
+    });
+</script>

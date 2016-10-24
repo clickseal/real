@@ -1,0 +1,100 @@
+﻿@using real.Models;
+@model IQueryable<sms_exam>
+
+<div class="point_fixed">
+    <a href="~/home/code" onclick="return confirm('Та шалгалтаа дуусгахдаа итгэлтэй байна уу?')" class="btn blue waves-effect waves-light">Дахин шалгалт</a>
+    <div class="btn red">оноо : <span id="qi_ind_current">0</span>/60</div>
+</div>
+<div class="had-container">
+    <div class="card">
+        <div class="row">
+            <div class="col s12">
+                <div id="examPage" class="center">
+                    <br /><br /><br /><br /><br /><br />
+                    
+                    <div class="preloader-wrapper big active">
+                        <div class="spinner-layer spinner-blue">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div><div class="gap-patch">
+                                <div class="circle"></div>
+                            </div><div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+
+                        <div class="spinner-layer spinner-red">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div><div class="gap-patch">
+                                <div class="circle"></div>
+                            </div><div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+
+                        <div class="spinner-layer spinner-yellow">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div><div class="gap-patch">
+                                <div class="circle"></div>
+                            </div><div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+
+                        <div class="spinner-layer spinner-green">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div><div class="gap-patch">
+                                <div class="circle"></div>
+                            </div><div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <h6>Түр хүлээнэ үү !<br />Шалгалтыг боловсруулж байна.</h6>
+                    <br /><br /><br /><br /><br /><br />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script type="text/javascript">
+        
+        jQuery(document).ready(function ($) {
+            $("#nav").addClass("hide");
+            $("#footer").addClass("hide");
+            preloader = new $.materialPreloader({
+                position: 'top',
+                height: '5px',
+                col_1: '#159756',
+                col_2: '#da4733',
+                col_3: '#3b78e7',
+                col_4: '#fdba2c',
+                fadeIn: 200,
+                fadeOut: 200
+            });
+            preloader.on();
+            getAllQui();
+        });
+
+        function getAllQui() {
+            var tbl = $('#examPage');
+            $.ajax({
+                url: 'http://localhost/real/home/quiz',
+                contentType: 'application/html ; charset:utf-8',
+                type: 'GET',
+                dataType: 'html'
+            }).success(function (result) {
+                tbl.empty().append(result);
+                preloader.off();
+            }).error(function () {
+
+            });
+        }
+
+    </script>
+}
+

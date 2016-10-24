@@ -1,0 +1,26 @@
+﻿@model IEnumerable<real.Models.Messages>
+
+<ul id="staggered-test" class="" style="text-align:center">
+    @{int i = 1;}
+    @foreach (var item in Model)
+    {
+        if (i <= 10)
+        {
+            <li style="transform: translate(50px, 100px);">
+                <p style="margin:0;">
+                    <i class="tiny material-icons">person</i> @Html.DisplayFor(modelItem => item.Mobile) | <i class="tiny material-icons">alarm</i> @Html.DisplayFor(modelItem => item.Ognoo, "ShortDateTime")                    
+                </p>
+                <br />
+            </li>
+        }
+        i++;
+    }
+</ul>
+<script type="text/javascript">
+    $(document).ready(function () {
+        Materialize.showStaggeredList('#staggered-test');
+    });
+</script>
+<style>    
+    #staggered-test li {opacity:0;}
+</style>

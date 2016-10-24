@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="2012074001" Class="dbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=202.170.84.14;Initial Catalog=2012074001;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="_2012074001ConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.sms_db" Member="sms_dbs">
+    <Type Name="sms_db">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="sms" Type="System.String" DbType="NVarChar(140)" CanBeNull="true" />
+      <Column Name="mobile" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+      <Column Name="ognoo" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="is_used" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="activation" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.sms_exams" Member="sms_exams">
+    <Type Name="sms_exam">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="config" Type="System.String" DbType="VarChar(4000)" CanBeNull="true" />
+      <Column Name="ognoo1" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ognoo2" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="is_finished" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="mobile" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+      <Column Name="quidval" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.sms_ExamCreate_2" Method="sms_ExamCreate_2">
+    <Parameter Name="Mobile" Parameter="mobile" Type="System.String" DbType="VarChar(8)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sms_ExamGet" Method="sms_ExamGet">
+    <Parameter Name="quidVAL" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="sms_ExamGetResult">
+      <Column Name="id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="title" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sms_ExamGet_Choice" Method="sms_ExamGet_Choice">
+    <Parameter Name="QuizID" Parameter="quizID" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="TestID" Parameter="testID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sms_ExamGet_ChoiceResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="title" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="is_true" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+</Database>
